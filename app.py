@@ -62,7 +62,7 @@ def drive_download_url(url: str) -> str:
     """Turn a Google Drive share link into a direct-download link; other links pass through."""
     import re
     m = re.search(r"/d/([\w-]+)", url) or re.search(r"[?&]id=([\w-]+)", url)
-    return f"https://drive.google.com/uc?export=download&id={m.group(1)}" if "drive.google.com" in url and m else url
+    return f"https://drive.google.com/uc?export=download&id={m.group(1)}" if ("drive.google.com" in url or "docs.google.com" in url) and m else url
 
 @st.cache_resource(show_spinner="Loading the stored Statista workbook…")
 def fetch_stored_workbook(url: str) -> bytes | None:
