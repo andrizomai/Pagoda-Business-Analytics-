@@ -6,7 +6,7 @@ MSBA capstone, analytics workbook and proof of concept. Subject: Pagoda (百果�
 
 **Live app:** https://uachi5phdhmmtiftbuvaii.streamlit.app/
 
-The notebook, the app and the written report use the same data files and the same calculations: the app's engine (`analytics.py`) reproduces 106 of the notebook's published values exactly, and every chart in the report is a file in `figures/` produced by the notebook.
+The notebook, the app and the written report use the same data files and the same calculations: the app's engine (`analytics.py`) reproduces 118 of the notebook's published values exactly, and every chart in the report is a file in `figures/` produced by the notebook.
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://uachi5phdhmmtiftbuvaii.streamlit.app/) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/andrizomai/Pagoda-Business-Analytics-/blob/main/pagoda_capstone_analytics_(MSBA).ipynb)
 
@@ -51,7 +51,8 @@ Or open the live app above. If the Statista file is not stored privately for the
 - Gross margin carries 92% of the variation in 2027 profit (80% if the plan is the best case) and is the top driver in every robustness test. One point of margin is worth about RMB 98 mn of 2027 profit, as much as about 1,040 additional stores.
 - Recommendation: one margin engine covering pricing and grade mix, procurement and product mix, and store ordering and markdowns. Store spoilage falls mainly on franchisees, so demand forecasting is the enabler.
 - The ask: a 6-month pilot in about 100 stores across two regions, about RMB 2.0 mn, gated at +0.1 pt of margin with a +0.3 pt target. Rolled out network-wide it pays back at about 0.02 pt; +0.3 pt is worth about RMB 26 mn a year.
-- First-half 2026 results (reported September 2026) are the first out-of-sample test: gross margin reached 12.2%, at the 98th percentile of the neutral range and above the whole best-case range, attributed to product-mix optimisation. 14% of revenue came from the new Seven-Star alliance, which the model does not yet include.
+- Cost-benefit (notebook section 6, app Business case tab): in the first year after network rollout the programme returns about 91% on its cost at the +0.1 pt gate and about 472% at the +0.3 pt target, and pays back 13–26 months after approval. The pilot is worth running if the chance of clearing the gate exceeds about 33%.
+- First-half 2026 results (announced 28 August 2026) are the first out-of-sample test: gross margin reached 12.2%, at the 98th percentile of the neutral range and above the whole best-case range, attributed to product-mix optimisation. 14% of revenue came from the new Seven-Star alliance, which the model does not yet include.
 
 These probabilities depend on uncertainty ranges that are judgements anchored on 2024-25 history. The ranking of levers is the robust result.
 

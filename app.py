@@ -450,6 +450,18 @@ with tab_case:
                                                        "median_cumulative_neutral_rmb_mn": "Median 2026-28 profit, neutral"})
                      .style.format({"Gain, pt": "+{:.1f}", "Profit a year, RMB mn": "{:.1f}", "2026 profit chance, neutral %": "{:.0f}",
                                     "2026 profit chance, best case %": "{:.0f}", "Median 2026-28 profit, neutral": "{:,.0f}"}), width="stretch", hide_index=True)
+    cb = an.cost_benefit(up, pilot_total, run_cost)
+    st.markdown("**Cost-benefit summary** (report Table 17; gain applied network-wide from rollout, 12-18 months after approval)")
+    cbt = pd.DataFrame({f"+{g:.1f} pt" + (" (gate)" if g == 0.1 else " (target)" if g == 0.3 else ""): {
+        "Profit gain a year, RMB mn": f"{r.benefit_rmb_mn:.1f}", "Running cost a year, RMB mn": f"{r.running_cost_rmb_mn:.1f}",
+        "Net benefit a year, RMB mn": f"{r.net_benefit_rmb_mn:.1f}", "Pilot cost (one-off), RMB mn": f"{r.pilot_cost_rmb_mn:.1f}",
+        "Return on cost, first year after rollout": f"{r.roi_first_year_pct:.0f}%",
+        "Payback after rollout, months": f"{r.payback_after_rollout_months_low:.0f}-{r.payback_after_rollout_months_high:.0f}",
+        "Payback after approval, months": f"{r.payback_after_approval_months_low:.0f}-{r.payback_after_approval_months_high:.0f}",
+        "Pilot worth running if P(pass) exceeds": f"{r.breakeven_pass_probability_pct:.0f}%"} for g, r in cb.iterrows()})
+    st.dataframe(cbt, width="stretch")
+    st.caption("Return on cost = (benefit - running cost - pilot cost) / (running cost + pilot cost). The last row is the chance of clearing the gain that makes "
+               "the pilot worth running in expectation: pilot cost / one year of net benefit.")
     st.markdown("**Try your own assumptions**")
     a, b = st.columns([1, 2], gap="large")
     with a:

@@ -591,3 +591,26 @@ def load_pilot_cost(csv) -> tuple[pd.DataFrame, float]:
     """Pilot cost lines written by the notebook (section 6); returns the table and the total in RMB mn."""
     t = pd.read_csv(csv)
     return t, float(t.cost_rmb_mn.sum())
+
+
+PILOT_END_MONTH, ROLLOUT_MONTHS = 9, (12, 18)   # pilot runs in months 3-9; network rollout starts 12-18 months after approval (report: Scale Up)
+
+
+def cost_benefit(uplift: pd.DataFrame, pilot_total: float, run_cost: float, gains=(0.1, 0.3, 0.5)) -> pd.DataFrame:
+    """Cost-benefit summary (report Table 17). `uplift` is margin_uplift_table() output; costs in RMB mn.
+    Return on cost = (benefit - running cost - pilot cost) / (running cost + pilot cost), first year after rollout.
+    Payback counts the cost spent by rollout (pilot plus running cost after month 9) against the monthly net benefit."""
+    rows = []
+    for g in gains:
+        u = uplift.iloc[int(np.argmin(np.abs(uplift.index.values - g)))]
+        benefit = float(u.profit_per_year_rmb_mn); net = benefit - run_cost
+        cost_at = [pilot_total + run_cost * (m - PILOT_END_MONTH) / 12 for m in ROLLOUT_MONTHS]
+        pay = [c / (net / 12) for c in cost_at]
+        rows.append(dict(gain_pt=g, benefit_rmb_mn=benefit, running_cost_rmb_mn=run_cost, net_benefit_rmb_mn=net, pilot_cost_rmb_mn=pilot_total,
+                         roi_first_year_pct=(benefit - run_cost - pilot_total) / (run_cost + pilot_total) * 100,
+                         cost_at_rollout_low=cost_at[0], cost_at_rollout_high=cost_at[1],
+                         payback_after_rollout_months_low=pay[0], payback_after_rollout_months_high=pay[1],
+                         payback_after_approval_months_low=ROLLOUT_MONTHS[0] + pay[0], payback_after_approval_months_high=ROLLOUT_MONTHS[1] + pay[1],
+                         breakeven_pass_probability_pct=pilot_total / net * 100,
+                         p_profit_2026_neutral_pct=float(u.p_profit_2026_neutral_pct)))
+    return pd.DataFrame(rows).set_index("gain_pt")
