@@ -58,12 +58,22 @@ These probabilities depend on uncertainty ranges that are judgements anchored on
 
 ## Sources
 
-- Statista Market Insights. 2026. *Fresh Fruits - China*. Accessed August 13, 2026.
-- Xu, Zhuonan, and Jierui Wang. 2025. *Pagoda Industrial (Group): 2024 Losses Totaled Rmb386mn Due to Weak Consumer Spending and Product Strategy Adjustment*. China International Capital Corporation, April 4, 2025.
-- Liu, Guangyi, and Xiaoying Peng. 2026. *百果园集团 (2411.HK): 水果连锁龙头，扬帆再次起航*. China Galaxy Securities, April 10, 2026.
-- Wong, Joseph. 2023. *Shenzhen Pagoda (2411 HK): Sowing the Franchiser's Seed*. CMB International Global Markets, March 3, 2023.
-- Xu, Zhuonan, Jierui Wang, and Yi Ding. 2026. *Pagoda Industrial (Group): Main Business Recovering in 1H26; Cooperation under Seven-Star Convention Alliance Advancing*. China International Capital Corporation, September 7, 2026.
-- Pagoda (Shenzhen Pagoda Industrial (Group) Corporation Limited). 2026b. *Announcement of Interim Results for the Six Months Ended June 30, 2026*. Hong Kong Exchanges and Clearing, August 28, 2026. https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0828/2026082804036.pdf
-- Levels.fyi. 2026; Payscale. 2025. Salary benchmarks for the pilot cost. Accessed October 12, 2026.
+## Works Cited
 
-Company figures are transcribed from the four broker reports, whose firms all have ties to Pagoda, and should be checked against Pagoda's annual reports on HKEXnews.
+Levels.fyi. 2026. “[Exact title of salary data or report].” Accessed October 12, 2026. [URL].
+
+Liu, Guangyi, and Xiaoying Peng. 2026. *百果园集团 (2411.HK): 水果连锁龙头，扬帆再次起航*. China Galaxy Securities, April 10, 2026.
+
+Pagoda (Shenzhen Pagoda Industrial (Group) Corporation Limited). 2026b. *Announcement of Interim Results for the Six Months Ended June 30, 2026*. Hong Kong Exchanges and Clearing, August 28, 2026. https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0828/2026082804036.pdf.
+
+Payscale. 2025. “[Exact title of salary data or report].” Accessed October 12, 2026. [URL].
+
+Statista Market Insights. 2026. “Fresh Fruits - China.” Accessed August 13, 2026. https://www.statista.com/outlook/cmo/food/fruits-nuts/fresh-fruits/china/?currency=USD.
+
+Wong, Joseph. 2023. *Shenzhen Pagoda (2411 HK): Sowing the Franchiser's Seed*. CMB International Global Markets, March 3, 2023.
+
+Xu, Zhuonan, and Jierui Wang. 2025. *Pagoda Industrial (Group): 2024 Losses Totaled Rmb386mn Due to Weak Consumer Spending and Product Strategy Adjustment*. China International Capital Corporation, April 4, 2025.
+
+Xu, Zhuonan, Jierui Wang, and Yi Ding. 2026. *Pagoda Industrial (Group): Main Business Recovering in 1H26; Cooperation under Seven-Star Convention Alliance Advancing*. China International Capital Corporation, September 7, 2026.
+
+Company figures are transcribed from the four broker reports, whose firms all have ties to Pagoda, and have beem checked against Pagoda's annual reports on HKEXnews.
