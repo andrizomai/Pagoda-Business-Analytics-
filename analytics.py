@@ -561,7 +561,7 @@ def robustness(model: Model) -> pd.DataFrame:
 
 
 # ----------------------------------------------------------------------------- business case
-NP_H1_2026 = 33.6   # 1H26 profit attributable, Pagoda 2026b as cited in the team report (CICC 2026 rounds it to 34)
+NP_H1_2026 = 33.6   # 1H26 profit attributable, Pagoda 2026b interim results (CICC 2026 rounds it to 34)
 
 
 def first_half_reach(model: Model, np_h1: float = NP_H1_2026) -> dict:

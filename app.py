@@ -540,7 +540,7 @@ with tab_data:
 - Liu, Guangyi, and Xiaoying Peng. 2026. *百果园集团 (2411.HK): 水果连锁龙头，扬帆再次起航*. China Galaxy Securities, April 10, 2026.
 - Wong, Joseph. 2023. *Shenzhen Pagoda (2411 HK): Sowing the Franchiser's Seed*. CMB International Global Markets, March 3, 2023.
 - Xu, Zhuonan, Jierui Wang, and Yi Ding. 2026. *Pagoda Industrial (Group): Main Business Recovering in 1H26; Cooperation under Seven-Star Convention Alliance Advancing*. China International Capital Corporation, September 7, 2026.
-- Pagoda (Shenzhen Pagoda Industrial (Group) Corporation Limited). 2026b. *Interim Report 2026*. Hong Kong Exchanges and Clearing, September 25, 2026. (Total store count and first-half profit of RMB 33.6 mn, as cited in the team report.)
+- Pagoda (Shenzhen Pagoda Industrial (Group) Corporation Limited). 2026b. *Announcement of Interim Results for the Six Months Ended June 30, 2026*. Hong Kong Exchanges and Clearing, August 28, 2026. https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0828/2026082804036.pdf (Total store count and first-half profit attributable of RMB 33.6 mn.)
 - Levels.fyi. 2026. Salary data for software engineers, data scientists and solution architects in Shenzhen and data analysts in China. Accessed October 12, 2026.
 - Payscale. 2025. Salary data for software developers in Shenzhen and data analysts in China. Accessed October 12, 2026.
 """)
