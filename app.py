@@ -16,7 +16,7 @@ import streamlit as st
 import analytics as an
 
 ROOT = Path(__file__).parent
-DATA = ROOT / "data"
+DATA = ROOT
 BUNDLED = DATA / "statista_fresh_fruits_china.xlsx"
 
 st.set_page_config(page_title="Pagoda Turnaround Simulator", page_icon="🍊", layout="wide")
