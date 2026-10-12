@@ -58,6 +58,29 @@ st.markdown("""
 def get_market(digest: str | None, payload: bytes | None) -> an.Market:
     return an.load_market(io.BytesIO(payload) if payload else BUNDLED)
 
+def drive_download_url(url: str) -> str:
+    """Turn a Google Drive share link into a direct-download link; other links pass through."""
+    import re
+    m = re.search(r"/d/([\w-]+)", url) or re.search(r"[?&]id=([\w-]+)", url)
+    return f"https://drive.google.com/uc?export=download&id={m.group(1)}" if "drive.google.com" in url and m else url
+
+@st.cache_resource(show_spinner="Loading the stored Statista workbook…")
+def fetch_stored_workbook(url: str) -> bytes | None:
+    """Download the workbook from a private link kept in Streamlit secrets (never in the repo)."""
+    import urllib.request
+    try:
+        with urllib.request.urlopen(drive_download_url(url), timeout=30) as r:
+            data = r.read()
+        return data if data[:2] == b"PK" else None   # an .xlsx is a zip file; anything else is an error page
+    except Exception:
+        return None
+
+def stored_workbook_url() -> str | None:
+    try:
+        return st.secrets.get("STATISTA_URL")
+    except Exception:                                # no secrets configured
+        return None
+
 @st.cache_resource
 def get_company():
     facts, plan = an.load_company(DATA / "pagoda_facts.csv", DATA / "analyst_plan.csv")
@@ -89,13 +112,20 @@ with st.sidebar:
     up = st.file_uploader("Refresh with a new Statista export (.xlsx)", type="xlsx",
                           help="Statista Market Insights > Fresh Fruits > China > download as XLSX. The app re-runs every check and chart on the new file.")
     payload = up.getvalue() if up else None
+    stored = False
     if payload is None and not BUNDLED.exists():
-        st.error("No market data found. Upload the Statista export to start.")
-        st.stop()
+        url = stored_workbook_url()
+        payload = fetch_stored_workbook(url) if url else None
+        stored = payload is not None
+        if payload is None:
+            st.error("No market data found. Upload the Statista export to start."
+                     + (" The stored copy could not be downloaded; check the STATISTA_URL secret and the file's sharing setting." if url else ""))
+            st.stop()
     digest = hashlib.md5(payload).hexdigest() if payload else "bundled"
     try:
         mk = get_market(digest, payload)
-        source_label = up.name if up else "Bundled export (accessed 13 Aug 2026)"
+        source_label = (up.name if up else "Stored Statista export (accessed 13 Aug 2026)" if stored
+                        else "Bundled export (accessed 13 Aug 2026)")
     except Exception as e:                       # bad upload: say why, fall back
         st.error(f"Could not read that workbook: {e}")
         if not BUNDLED.exists():
