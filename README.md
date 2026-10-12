@@ -4,16 +4,20 @@ MSBA capstone, analytics workbook and proof of concept. Subject: Pagoda (百果�
 
 **Business question.** China's fresh-fruit retail market keeps growing in Statista's data, yet Pagoda's revenue fell 9.8% in 2024 and 20.4% in 2025 and the company moved from profit to loss. Is the problem the market or the company, and which operating lever matters most for getting back to profit?
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/andrizomai/Pagoda-Business-Analytics-/blob/main/pagoda_capstone_analytics.ipynb)
+**Live app:** https://uachi5phdhmmtiftbuvaii.streamlit.app/ (upload the Statista export in the sidebar to start)
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://uachi5phdhmmtiftbuvaii.streamlit.app/) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/andrizomai/Pagoda-Business-Analytics-/blob/main/pagoda_capstone_analytics.ipynb)
 
 ## What is here
 
 | Path | What it is |
 |---|---|
 | `pagoda_capstone_analytics.ipynb` | The analysis, end to end: data understanding, preparation and validation, exploratory analysis, forecast backtest, Monte Carlo turnaround simulator, value figures. Saved with outputs, so it can be read without running. |
-| `streamlit_app/` | The proof of concept as an interactive app. `analytics.py` is the calculation engine; `app.py` is the interface. |
-| `streamlit_app/data/` | Company figures with a source and page for each value, the analyst forecast used to calibrate the model, past analyst forecasts used to size the uncertainty, and the assumption register (every assumption with its basis and source). |
-| `figures/` | The six charts produced by the notebook. |
+| `app.py`, `analytics.py` | The proof of concept as an interactive Streamlit app. `analytics.py` is the calculation engine; `app.py` is the interface. |
+| `pagoda_facts.csv` | Company figures with a source and page for each value. |
+| `analyst_plan.csv` | The analyst forecast used to calibrate the model. |
+| `analyst_forecasts.csv` | Past analyst forecasts, used to size the uncertainty. |
+| `assumption_register.csv` | Every assumption with its basis and source. |
 
 ## Running the notebook
 
@@ -25,11 +29,10 @@ Click the Colab badge, then *Runtime > Run all*. The first code cell asks you to
 
 ```bash
 pip install -r requirements.txt
-cd streamlit_app
 streamlit run app.py
 ```
 
-Upload the same Statista export in the sidebar.
+Or open the live app above. Either way, upload the same Statista export in the sidebar.
 
 ## Headline results
 
