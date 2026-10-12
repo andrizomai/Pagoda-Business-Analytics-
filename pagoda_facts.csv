@@ -1,0 +1,104 @@
+year,metric,value,unit,source,note
+2019,revenue,8976.0,RMB mn,CMB 2023 p.21,
+2020,revenue,8854.0,RMB mn,CMB 2023 p.21,
+2021,revenue,10289.0,RMB mn,CMB 2023 p.21,
+2022,revenue,11312.0,RMB mn,derived from CICC 2025 p.1,derived: 2023 revenue / (1 + 0.7% growth)
+2023,revenue,11391.0,RMB mn,CICC 2025 p.1,
+2024,revenue,10273.0,RMB mn,CICC 2025 p.1,
+2025,revenue,8174.0,RMB mn,Galaxy 2026 p.1,
+2020,net_profit_attributable,49.0,RMB mn,CMB 2023 p.35,
+2021,net_profit_attributable,235.0,RMB mn,CMB 2023 p.35,
+2023,net_profit_attributable,362.0,RMB mn,CICC 2025 p.1,
+2024,net_profit_attributable,-386.0,RMB mn,CICC 2025 p.1,
+2025,net_profit_attributable,-317.0,RMB mn,Galaxy 2026 p.1,
+2019,gross_margin,9.8,%,Galaxy 2026 p.3,
+2020,gross_margin,9.1,%,CMB 2023 p.35,
+2021,gross_margin,11.2,%,CMB 2023 p.35,
+2023,gross_margin,11.5,%,CICC 2025 p.3,
+2024,gross_margin,7.4,%,CICC 2025 p.3,
+2025,gross_margin,7.3,%,Galaxy 2026 p.18,
+2019,selling_expense_ratio,3.8,%,Galaxy 2026 p.3,
+2023,selling_expense_ratio,4.2,%,CICC 2025 p.4,
+2024,selling_expense_ratio,5.9,%,CICC 2025 p.2,
+2025,selling_expense_ratio,6.5,%,Galaxy 2026 p.18,
+2024,admin_rd_expense_ratio,4.5,%,Galaxy 2026 p.18,
+2025,admin_rd_expense_ratio,3.8,%,Galaxy 2026 p.18,
+1H23,gross_margin_half,11.3,%,CICC 2025 p.4,
+2H23,gross_margin_half,11.8,%,CICC 2025 p.4,
+1H24,gross_margin_half,11.1,%,CICC 2025 p.4,
+2H24,gross_margin_half,3.1,%,CICC 2025 p.4,
+2H25,gross_margin_half,10.0,%,Galaxy 2026 p.10,2H25 quoted as 'back to 10%'
+2022,stores_total_year_end,5650.0,stores,Galaxy 2026 p.5,
+2023,stores_total_year_end,6093.0,stores,Galaxy 2026 p.5,
+2024,stores_total_year_end,5127.0,stores,CICC 2025 p.1,"4,039 franchised + 1,077 regional-agent + 11 self-operated"
+2025,stores_total_year_end,4468.0,stores,"Galaxy 2026 p.10, p.17","4,460 franchise network + 8 self-operated"
+2024,stores_franchise_network_year_end,5116.0,stores,Galaxy 2026 p.17,franchised + regional-agent stores
+2025,stores_franchise_network_year_end,4460.0,stores,Galaxy 2026 p.17,franchised + regional-agent stores
+1H25,stores_franchise_network_period_end,4375.0,stores,Galaxy 2026 p.10,
+2024,revenue_per_network_store,1.48,RMB mn,Galaxy 2026 p.17,
+2025,revenue_per_network_store,1.48,RMB mn,Galaxy 2026 p.17,
+2024,revenue_franchise_stores,7396.0,RMB mn,Galaxy 2026 p.17,
+2025,revenue_franchise_stores,5912.0,RMB mn,Galaxy 2026 p.17,
+2024,revenue_regional_agents,1215.0,RMB mn,Galaxy 2026 p.17,
+2025,revenue_regional_agents,855.0,RMB mn,Galaxy 2026 p.17,
+2024,revenue_self_operated,41.0,RMB mn,Galaxy 2026 p.17,
+2025,revenue_self_operated,21.0,RMB mn,Galaxy 2026 p.17,
+2024,revenue_direct_sales,1256.0,RMB mn,Galaxy 2026 p.17,
+2025,revenue_direct_sales,1191.0,RMB mn,Galaxy 2026 p.17,
+2024,revenue_online,106.0,RMB mn,Galaxy 2026 p.17,
+2025,revenue_online,61.0,RMB mn,Galaxy 2026 p.17,
+2024,revenue_other,259.0,RMB mn,Galaxy 2026 p.17,
+2025,revenue_other,134.0,RMB mn,Galaxy 2026 p.17,
+2024,members,90.74,mn,CICC 2025 p.1,
+2024,paid_members,0.854,mn,CICC 2025 p.1,-27.0% YoY
+2024,online_share_of_orders,25.2,%,CICC 2025 p.1,"share of orders, not of revenue"
+2025,store_share_tier1,26.0,%,Galaxy 2026 p.5,chart values; sum to 101 through rounding
+2025,store_share_tier2,36.0,%,Galaxy 2026 p.5,chart values; sum to 101 through rounding
+2025,store_share_tier3_and_below,39.0,%,Galaxy 2026 p.5,chart values; sum to 101 through rounding
+2025,stores_per_mn_people_Shenzhen,22.0,stores/mn,Galaxy 2026 p.9,
+2025,stores_per_mn_people_Shanghai,11.0,stores/mn,Galaxy 2026 p.9,
+2025,stores_per_mn_people_Guangzhou,10.0,stores/mn,Galaxy 2026 p.9,
+2025,stores_per_mn_people_Beijing,3.0,stores/mn,Galaxy 2026 p.9,
+2021,royalty_and_franchise_income_share_of_revenue,1.6,%,CMB 2023 p.21,franchisees pay a monthly royalty set as a share of store gross profit (p.13)
+2021,market_share_frost_sullivan,1.0,%,CMB 2023 p.5,share of China fruit retail sales value; top five retailers hold 3.6%
+2021,inventory_days,9.9,days,CMB 2023 p.35,
+2019-21,asp_rmb_per_kg_excellent_low,19.9,RMB/kg,CMB 2023 p.9,
+2019-21,asp_rmb_per_kg_excellent_high,24.6,RMB/kg,CMB 2023 p.9,
+2019-21,asp_rmb_per_kg_grade_a_low,13.3,RMB/kg,CMB 2023 p.9,
+2019-21,asp_rmb_per_kg_grade_a_high,14.9,RMB/kg,CMB 2023 p.9,
+2021,fruit_cost_share_of_cogs,95.3,%,CMB 2023 p.29,
+1H25,revenue_half,4376.0,RMB mn,CICC 2026 p.4,
+1H25,gross_profit_half,216.0,RMB mn,CICC 2026 p.4,
+1H25,net_profit_half,-342.0,RMB mn,CICC 2026 p.4,
+1H25,adjusted_net_profit_half,-295.0,RMB mn,CICC 2026 p.4,
+1H25,gross_margin_half_cicc,4.9,%,CICC 2026 p.4,
+1H25,operating_margin_half,-7.2,%,CICC 2026 p.4,
+2H25,revenue_half,3799.0,RMB mn,CICC 2026 p.4,
+2H25,gross_profit_half,382.0,RMB mn,CICC 2026 p.4,
+2H25,net_profit_half,25.0,RMB mn,CICC 2026 p.4,
+2H25,adjusted_net_profit_half,29.0,RMB mn,CICC 2026 p.4,
+2H25,gross_margin_half_cicc,10.0,%,CICC 2026 p.4,
+2H25,operating_margin_half,1.5,%,CICC 2026 p.4,
+1H26,revenue_half,5008.0,RMB mn,CICC 2026 p.4,
+1H26,gross_profit_half,609.0,RMB mn,CICC 2026 p.4,
+1H26,net_profit_half,34.0,RMB mn,CICC 2026 p.4,
+1H26,adjusted_net_profit_half,61.0,RMB mn,CICC 2026 p.4,
+1H26,gross_margin_half_cicc,12.2,%,CICC 2026 p.4,
+1H26,operating_margin_half,1.3,%,CICC 2026 p.4,
+1H26,revenue_growth_yoy,14.5,%,CICC 2026 p.1,
+1H26,franchise_store_revenue,3080.0,RMB mn,CICC 2026 p.1,+0.1% YoY
+1H26,daily_sales_per_store_growth_yoy,1.4,%,CICC 2026 p.1,"store-level sales measure, not Pagoda revenue per store"
+1H26,franchise_store_gross_profit_growth_yoy,3.0,%,CICC 2026 p.1,'approximately 3%'
+1H26,stores_franchise_network_period_end,4752.0,stores,CICC 2026 p.1,+377 YoY
+1H26,share_of_new_stores_tier3_and_below,45.0,%,CICC 2026 p.1,
+1H26,online_share_of_orders,27.8,%,CICC 2026 p.1,+3.1 pt YoY
+1H26,members,97.7,mn,CICC 2026 p.1,+5% YoY
+1H26,seven_star_alliance_revenue,721.0,RMB mn,CICC 2026 p.1,seven regional retail brands in seven provinces; 'fruit + snack' format
+1H26,seven_star_alliance_gross_margin_est,7.7,%,CICC 2026 p.1,CICC estimate
+1H26,gross_margin_excluding_alliance,12.9,%,CICC 2026 p.1,CICC 'comparable basis'; attributed to optimisation of the fruit product mix
+1H26,selling_expense_ratio,5.7,%,CICC 2026 p.1,
+1H26,g_and_a_expense_ratio,4.5,%,CICC 2026 p.1,
+1H26,r_and_d_expense_ratio,0.8,%,CICC 2026 p.1,
+2025,cogs,7577.0,RMB mn,CICC 2026 p.3,
+2025,selling_expenses,535.0,RMB mn,CICC 2026 p.3,
+2025,administrative_expenses,203.0,RMB mn,CICC 2026 p.3,

@@ -1,0 +1,39 @@
+area,assumption,value,basis,source
+Market,"Market definition: B2C fresh fruit for at-home consumption, China, USD",,sourced,"Statista 2026, Intro sheet"
+Market,History runs 2018 to 2025; later years are Statista's forecast,2025,judgement,Statista export updated 19 Feb 2026; 2025 not marked as actual or estimate
+Market,"Market revenue, volume, price and per-capita series",2018-2031,sourced,"Statista 2026, Revenue, Volume and Price sheets"
+Market,Population for the driver forecast = revenue / revenue per capita,1.424bn (2025),derived,"Statista 2026, Revenue sheet"
+Market,CNY per USD for the share proxy,workbook series; 7.2 as a check,judgement,"Statista 2026, Key Market Indicators (a projection); 7.2 from author's knowledge, verify against PBoC/SAFE"
+Market,Forecast range = linear to exponential extrapolation,,judgement,Section 4; eight annual points cannot support a statistical interval
+Market,Frost & Sullivan market growth and Pagoda share,7.6% a year 2021-26E; 1.0% share (2021),sourced,"CMB 2023 pp.5, 14"
+Base year 2025,"Network stores (franchised + regional agent), year end","4,460",sourced,"Galaxy 2026 pp.10, 17"
+Base year 2025,Revenue per network store,RMB 1.48 mn,sourced,Galaxy 2026 p.17
+Base year 2025,Direct (B2B) sales,"RMB 1,191 mn",sourced,Galaxy 2026 p.17
+Base year 2025,"Other revenue lines (self-operated, online, other)",RMB 216 mn,sourced,Galaxy 2026 p.17
+Base year 2025,"Revenue, net profit, gross margin","8,174; -317; 7.3%",sourced,"Galaxy 2026 pp.1, 18; CICC 2026 p.3"
+Plan 2026-28,Revenue,"8,746 / 9,744 / 10,927",sourced,Galaxy 2026 p.17
+Plan 2026-28,Net profit,15 / 169 / 253,sourced,"Galaxy 2026 pp.1, 17"
+Plan 2026-28,"Network stores, year end","4,728 / 5,106 / 5,616",sourced,Galaxy 2026 p.17
+Plan 2026-28,Revenue per store (RMB mn),1.51 / 1.54 / 1.57,sourced,Galaxy 2026 p.17
+Plan 2026-28,Direct sales,"1,549 / 1,859 / 2,138",sourced,Galaxy 2026 p.17
+Plan 2026-28,Gross margin,10.2% / 11.0% / 11.5%,sourced,Galaxy 2026 p.18
+Plan 2026-28,Selling expense ratio,6.0% / 5.5% / 5.4%,sourced,Galaxy 2026 p.18
+Plan 2026-28,Admin and R&D expense ratio,3.5% / 3.2% / 3.1%,sourced,Galaxy 2026 p.18
+Plan 2026-28,"Other net costs (finance, tax, other) as % of revenue",0.53% / 0.57% / 0.68%,derived,Backed out of Galaxy 2026 p.18 so the model reproduces the plan
+Model,Network revenue = average of opening and closing stores x revenue per store,,judgement,Reproduces Galaxy within 0.3% (section 5.1)
+Model,Share of operating costs that is fixed,50%,judgement,Tested at 25% and 75% (section 5.7)
+Model,One draw per driver applies to all three years,,judgement,Tested with fresh yearly draws (section 5.7)
+Model,No correlation between sales per store and margin,0,judgement,Tested at -0.5 and +0.5 (section 5.7)
+Model,Seven-Star alliance revenue not modelled,,judgement,"Business reported only in CICC 2026 p.1, after calibration; see section 5.8"
+Ranges 2026,Net store openings,+18 to +518 (neutral); -200 to +400 (downside-leaning),judgement,"2025 network change -656, 2H25 +85 (Galaxy 2026 p.10)"
+Ranges 2026,Revenue per store growth,-2.0% to 6.0% (neutral); -4.0% to 5.0% (downside-leaning),judgement,"2024 about -10%, 2025 flat, 2H25 +1.8% (Galaxy 2026 pp.5, 17)"
+Ranges 2026,Gross margin,7.7% to 12.7% (neutral); 7.5% to 11.0% (downside-leaning),judgement,Forecast misses of 0.5 to 5.5 pt (section 5.2: CMB 2023 p.35; CICC 2025 pp.3-4)
+Ranges 2026,Direct sales growth,10.1% to 50.1% (neutral); -5.0% to 40.0% (downside-leaning),judgement,"2024 +22%, 2025 -5% (Galaxy 2026 p.17)"
+Ranges 2026,Operating cost against plan,95% to 105% (neutral); 95% to 110% (downside-leaning),judgement,Selling-expense ratio rose in 2024 and 2025 (CICC 2025 p.1; Galaxy 2026 p.3)
+Ranges 2026,Other net costs,0.23% to 0.83% (neutral); 0.28% to 1.18% (downside-leaning),judgement,Backed-out plan values; 2024-25 actuals roughly 0.8-1.2%
+Interpretation,Franchisees buy fruit from Pagoda and pay a royalty on store gross profit,royalty 1.6% of 2021 revenue,sourced,"CMB 2023 pp.13, 21"
+Interpretation,Store spoilage falls mainly on franchisees,,judgement,Inferred from CMB 2023 p.13; returns policy not stated in any source
+Interpretation,Grade-based pricing,Excellent RMB 19.9-24.6/kg; Grade A 13.3-14.9/kg (2019-21),sourced,CMB 2023 p.9
+Interpretation,Margin fell because of the move to value pricing,,sourced,CICC 2025 pp.1-2; Galaxy 2026 p.3
+Interpretation,1H26 margin gain came from fruit product-mix optimisation,12.2% (12.9% excluding alliance),sourced,CICC 2026 p.1
+Business case,"Build cost, running cost, margin gain, ramp-up, discount rate (app only)",20; 8 a year; 0.3 pt; 30/70/100%; 8%,placeholder,Not estimates; replace with sourced figures

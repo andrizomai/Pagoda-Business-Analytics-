@@ -1,0 +1,5 @@
+forecast,made,year,horizon,revenue,net_profit,gross_margin,source
+CMB International,Mar 2023,2023,same year,12752,447,12.4,CMB 2023 p.35
+CMB International,Mar 2023,2024,1 year ahead,14308,586,12.9,CMB 2023 p.35
+CICC (previous forecast),before Apr 2025,2025,about 1 year ahead,10765,220,11.1,CICC 2025 p.4 (margin derived from revenue and COGS)
+CICC,Apr 2025,2025,same year,9176,-297,7.8,CICC 2025 p.3
