@@ -58,7 +58,7 @@ These probabilities depend on uncertainty ranges that are judgements anchored on
 
 ## Sources
 
-## Works Cited
+## References 
 
 Levels.fyi. 2026. “[Exact title of salary data or report].” Accessed October 12, 2026. [URL].
 
