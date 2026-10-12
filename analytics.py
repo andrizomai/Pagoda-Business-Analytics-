@@ -296,7 +296,7 @@ def first_half_2026_check(model: "Model", facts: pd.DataFrame) -> tuple[pd.DataF
         dict(driver="Gross margin", plan_2026=p.gross_margin.iloc[0] * 100, first_half_2026=gm * 100, pct_neutral=pct(n, "gm", gm), pct_downside=pct(d, "gm", gm),
              note=f"{F('1H26', 'gross_margin_excluding_alliance'):.1f}% excluding the Seven-Star alliance (CICC estimate)"),
         dict(driver="Net store openings", plan_2026=p.store_adds.iloc[0], first_half_2026=adds, pct_neutral=pct(n, "store_adds", adds), pct_downside=pct(d, "store_adds", adds),
-             note="six months only, against full-year ranges"),
+             note="franchise network basis, six months against full-year ranges; Pagoda's total incl. self-operated: 4,758 vs 4,468 (+290)"),
         dict(driver="Sales per store growth", plan_2026=p.rps_growth.iloc[0] * 100, first_half_2026=sps * 100, pct_neutral=pct(n, "rps_growth", sps), pct_downside=pct(d, "rps_growth", sps),
              note="store-level daily sales, not Pagoda revenue per store"),
     ]).set_index("driver")
@@ -558,3 +558,36 @@ def robustness(model: Model) -> pd.DataFrame:
         one("Neutral ranges 50% narrower", width=0.5),
         one("Downside-leaning ranges", belief="downside"),
     ]).set_index("scenario")
+
+
+# ----------------------------------------------------------------------------- business case
+NP_H1_2026 = 33.6   # 1H26 profit attributable, Pagoda 2026b as cited in the team report (CICC 2026 rounds it to 34)
+
+
+def first_half_reach(model: Model, np_h1: float = NP_H1_2026) -> dict:
+    """Share of trials whose full-year 2026 profit reaches what Pagoda earned in the first half alone."""
+    out = {}
+    for b in ("neutral", "downside"):
+        s = simulate(model, make_ranges(model, b))
+        out[b] = (s["net_profit"][:, 0] >= np_h1).mean() * 100
+    return out
+
+
+def margin_uplift_table(model: Model, lifts=(0.0, 0.001, 0.003, 0.005, 0.01)) -> pd.DataFrame:
+    """Value of a gross-margin gain applied in every year (report Table 15)."""
+    rev26 = float(calibration(model).model_revenue.iloc[0])
+    rows = []
+    for lift in lifts:
+        sn = simulate(model, make_ranges(model, "neutral", shift=dict(gm=lift)))
+        sd = simulate(model, make_ranges(model, "downside", shift=dict(gm=lift)))
+        rows.append(dict(uplift_pt=lift * 100, profit_per_year_rmb_mn=rev26 * lift,
+                         p_profit_2026_neutral_pct=(sn["net_profit"][:, 0] > 0).mean() * 100,
+                         p_profit_2026_downside_pct=(sd["net_profit"][:, 0] > 0).mean() * 100,
+                         median_cumulative_neutral_rmb_mn=float(np.median(sn["net_profit"].sum(axis=1)))))
+    return pd.DataFrame(rows).set_index("uplift_pt")
+
+
+def load_pilot_cost(csv) -> tuple[pd.DataFrame, float]:
+    """Pilot cost lines written by the notebook (section 6); returns the table and the total in RMB mn."""
+    t = pd.read_csv(csv)
+    return t, float(t.cost_rmb_mn.sum())

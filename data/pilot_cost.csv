@@ -1,0 +1,9 @@
+item,basis,source,cost_rmb_mn
+Analytics lead / data scientist,sourced,"Levels.fyi 2026: Shenzhen data scientist median CN¥426,827 (23 submissions)",0.215
+Data analyst,judgement,"Levels.fyi 2026 Shenzhen median 133k, China 313k; Payscale 2025 China base 155k",0.2
+Data engineer,judgement,Between Payscale 2025 Shenzhen developer base 191k and Levels.fyi 2026 Shenzhen software engineer 506k,0.175
+Solution architect (part time),judgement,"Levels.fyi 2026: about 710k Shenzhen, 716k China median (10 submissions)",0.1625
+Employer social insurance and housing fund (30% of salary),judgement,Assumption,0.22575
+Tools and cloud,judgement,Assumption,0.3
+Store tests and franchisee loss guarantees (100 stores),judgement,Assumption,0.5
+Contingency (15%),judgement,Assumption,0.2667375

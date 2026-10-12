@@ -36,4 +36,10 @@ Interpretation,Store spoilage falls mainly on franchisees,,judgement,Inferred fr
 Interpretation,Grade-based pricing,Excellent RMB 19.9-24.6/kg; Grade A 13.3-14.9/kg (2019-21),sourced,CMB 2023 p.9
 Interpretation,Margin fell because of the move to value pricing,,sourced,CICC 2025 pp.1-2; Galaxy 2026 p.3
 Interpretation,1H26 margin gain came from fruit product-mix optimisation,12.2% (12.9% excluding alliance),sourced,CICC 2026 p.1
-Business case,"Build cost, running cost, margin gain, ramp-up, discount rate (app only)",20; 8 a year; 0.3 pt; 30/70/100%; 8%,placeholder,Not estimates; replace with sourced figures
+Business case,"Pilot design: stores, regions, length, gate and target","100 stores; one tier-1 and one lower-tier city; 6 months; gate +0.1 pt, target +0.3 pt",judgement,"Section 6; power check after two months, expand to 150-200 stores if needed"
+Business case,Analytics lead / data scientist pay,"RMB 430,000 a year",sourced,"Levels.fyi 2026, Shenzhen data scientist median"
+Business case,"Data analyst, data engineer, architect pay","RMB 200,000 / 350,000 / 650,000 a year",judgement,"Anchored on Levels.fyi 2026 and Payscale 2025 (small samples, big-tech skew)"
+Business case,"Employer on-cost, tools, store tests, contingency",30%; RMB 0.3 mn; RMB 0.5 mn; 15%,judgement,Team assumptions
+Business case,Pilot cost and break-even,RMB 2.0 mn; 0.02 pt network-wide,derived,Section 6
+Business case,"App calculator defaults: build = pilot cost, running cost = team kept after rollout, gain 0.3 pt, ramp 30/70/100%, discount 8%",2.0; 2.6 a year; 0.3; 30/70/100; 8%,judgement,Editable in the app
+Interpretation,1H26 net profit used for the full-year comparison,RMB 33.6 mn,sourced,Pagoda 2026b as cited in the team report (CICC 2026 p.4 gives 34)

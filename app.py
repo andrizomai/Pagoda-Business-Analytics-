@@ -95,6 +95,10 @@ def get_forecast(digest):
     summ, detail = an.backtest(mk)
     return summ, detail, an.market_forecast(mk)
 
+@st.cache_data(show_spinner="Valuing margin gains…")
+def get_uplift():
+    return an.margin_uplift_table(model), an.first_half_reach(model)
+
 @st.cache_data(show_spinner="Running robustness scenarios…")
 def get_robustness():
     return an.robustness(model)
@@ -316,7 +320,11 @@ with tab_sim:
         st.dataframe(h1_tbl.rename(columns={"plan_2026": "Plan 2026", "first_half_2026": "1H26 actual", "pct_neutral": "Percentile, neutral range", "pct_downside": "Percentile, best-case range", "note": "Note"})
                      .style.format({"Plan 2026": "{:,.1f}", "1H26 actual": "{:,.1f}", "Percentile, neutral range": "{:.0f}", "Percentile, best-case range": "{:.0f}"}), width="stretch")
         st.caption(f"Revenue {h1['revenue']:,.0f} (+{h1['revenue_growth']:.1%} year on year), of which the alliance {h1['alliance']:,.0f}; excluding it, revenue changed {h1['core_growth']:+.1%}. "
-                   "Stores: 4,752 at end-June, already past the full-year plan of 4,728. Source: CICC 2026 pp.1, 4.")
+                   "Stores (franchise network, the model's basis): 4,752 at end-June, already past the full-year plan of 4,728 (CICC 2026 pp.1, 4). "
+                   "On Pagoda's total-store basis, which includes self-operated stores, 4,758 against 4,468 at end-2025 (Pagoda 2026b).")
+        _, reach = get_uplift()
+        st.caption(f"Only {reach['neutral']:.0f}% of neutral trials and {reach['downside']:.0f}% of best-case trials reach RMB {an.NP_H1_2026} mn of profit for the full year, "
+                   "the amount Pagoda earned in the first half alone.")
     ctl, out = st.columns([1, 2.2], gap="large")
     with ctl:
         belief_label = st.radio("How far do you trust the analyst plan?", ["As likely beaten as missed", "It is the best case"], key="belief",
@@ -414,14 +422,42 @@ with tab_sim:
 
 # ----------------------------------------------------------------------------- business case
 with tab_case:
-    st.subheader("Business case for a margin analytics programme")
-    st.warning("The cost and gain inputs below are placeholders, not estimates. Replace them with figures you can source before quoting any result.", icon="⚠️")
+    st.subheader("Business case for a gross-margin analytics pilot")
+    pc, pilot_total = an.load_pilot_cost(DATA / "pilot_cost.csv")
+    pt_value = float(an.calibration(model).model_revenue.iloc[0]) / 100          # RMB mn of profit per point of margin, per year
+    is_run = pc.item.str.contains("Employer|Tools") | pc.source.str.contains("Levels|Payscale")
+    run_cost = float(pc[is_run].cost_rmb_mn.sum()) * 2                           # pilot team and tools kept for a full year
+    st.markdown("**The ask:** a 6-month pilot in about 100 franchise stores across two regions (one tier-1 city, one lower-tier city), "
+                "measured against matched comparison stores. **Gate:** +0.1 pt of gross margin with no fall in franchisee profit. **Target:** +0.3 pt.")
+    m = st.columns(4)
+    m[0].metric("Pilot cost", f"RMB {pilot_total:.1f} mn")
+    m[1].metric("Pays back at (network-wide)", f"{pilot_total / pt_value:.2f} pt")
+    m[2].metric("Value of +0.3 pt network-wide", f"RMB {0.3 * pt_value:.0f} mn a year")
+    m[3].metric("Each +0.1 pt of margin", f"RMB {0.1 * pt_value:.0f} mn a year")
+    a, b = st.columns([3, 2], gap="large")
+    with a:
+        st.markdown("**Pilot cost estimate**")
+        st.dataframe(pc.rename(columns={"item": "Item", "basis": "Basis", "source": "Source", "cost_rmb_mn": "RMB mn"}).style.format({"RMB mn": "{:.2f}"}),
+                     width="stretch", hide_index=True)
+        st.caption("Salary lines come from Levels.fyi (2026) and Payscale (2025) benchmarks, which rest on small samples and lean towards large tech firms; "
+                   "the on-cost, tools, store-test and contingency lines are team assumptions. The pilot does not pay back on its own: 100 stores are about 2% of revenue. "
+                   "The value comes from rolling it out, which is why it is gated.")
+    with b:
+        up, _ = get_uplift()
+        st.markdown("**Value of a gross-margin gain** (applied every year)")
+        st.dataframe(up.reset_index().rename(columns={"uplift_pt": "Gain, pt", "profit_per_year_rmb_mn": "Profit a year, RMB mn",
+                                                       "p_profit_2026_neutral_pct": "2026 profit chance, neutral %", "p_profit_2026_downside_pct": "2026 profit chance, best case %",
+                                                       "median_cumulative_neutral_rmb_mn": "Median 2026-28 profit, neutral"})
+                     .style.format({"Gain, pt": "+{:.1f}", "Profit a year, RMB mn": "{:.1f}", "2026 profit chance, neutral %": "{:.0f}",
+                                    "2026 profit chance, best case %": "{:.0f}", "Median 2026-28 profit, neutral": "{:,.0f}"}), width="stretch", hide_index=True)
+    st.markdown("**Try your own assumptions**")
     a, b = st.columns([1, 2], gap="large")
     with a:
-        gain = st.slider("Gross margin gain once fully ramped, pt", 0.0, 2.0, 0.3, 0.05, help="What the programme adds to gross margin. Needs a benchmark or a pilot.")
+        gain = st.slider("Gross margin gain once fully ramped, pt", 0.0, 2.0, 0.3, 0.05, help="What the programme adds to gross margin. 0.3 pt is the pilot target.")
         ramp = [st.slider(f"Share of that gain reached in {y}, %", 0, 100, v, 5) for y, v in zip(PY, [30, 70, 100])]
-        build = st.number_input("One-off build cost, RMB mn", 0.0, 500.0, 20.0, 1.0)
-        runc = st.number_input("Running cost per year, RMB mn", 0.0, 200.0, 8.0, 1.0)
+        build = st.number_input("One-off cost (the pilot), RMB mn", 0.0, 500.0, round(pilot_total, 1), 0.1)
+        runc = st.number_input("Running cost per year after rollout, RMB mn", 0.0, 200.0, round(run_cost, 1), 0.1,
+                               help="Default: the pilot team, on-costs and tools kept on for a full year.")
         rate = st.slider("Discount rate, %", 0.0, 20.0, 8.0, 0.5)
         basis = st.radio("Revenue basis", ["Analyst plan", "Simulated median (current simulator settings)"], help="The gain applies to revenue; choose which revenue path to use.")
     with b:
@@ -437,8 +473,8 @@ with tab_case:
         m[0].metric(f"NPV {PY[0]}-{str(PY[-1])[2:]}, RMB mn", f"{npv_case:+,.0f}")
         m[1].metric("Benefit per cost", f"{benefit.sum() / (build + runc * len(PY)):.1f}x" if build + runc > 0 else "n/a")
         m[2].metric("Pays back in", str(payback) if payback else f"after {PY[-1]}")
-        m[3].metric("Break-even gain", f"{be_gain:.2f} pt", help="Average margin gain that covers running cost plus the build cost spread over the period.")
-        cf = pd.DataFrame({"year": [f"{PY[0]} build"] + [str(y) for y in PY], "Benefit": [0.0] + benefit.tolist(), "Cost": [-build] + [-runc] * len(PY)}).melt("year", var_name="flow", value_name="rmb_mn")
+        m[3].metric("Break-even gain", f"{be_gain:.2f} pt", help="Average margin gain that covers running cost plus the one-off cost spread over the period.")
+        cf = pd.DataFrame({"year": [f"{PY[0]} pilot"] + [str(y) for y in PY], "Benefit": [0.0] + benefit.tolist(), "Cost": [-build] + [-runc] * len(PY)}).melt("year", var_name="flow", value_name="rmb_mn")
         bars = alt.Chart(cf).mark_bar(size=30, stroke="#ffffff", strokeWidth=2).encode(x=alt.X("year:N", sort=None, title=None, axis=alt.Axis(labelAngle=0)), y=alt.Y("rmb_mn:Q", title="RMB mn"),
                                                                               color=alt.Color("flow:N", scale=alt.Scale(domain=["Benefit", "Cost"], range=[BLUE, RED]), legend=LEG),
                                                                               tooltip=[alt.Tooltip("year:N"), alt.Tooltip("flow:N"), alt.Tooltip("rmb_mn:Q", format="+,.1f", title="RMB mn")])
@@ -446,8 +482,8 @@ with tab_case:
         lifted = run_sim(belief, gm + gain * ramp[0] / 100, stores, rps, opex, fixed, rho, carry, an.N_TRIALS)[0]
         st.markdown(f"**Effect on the odds.** With the first-year gain of {gain * ramp[0] / 100:.2f} pt, the chance of a {PY[0]} profit moves from "
                     f"{pct_text(res.prob_profit_pct[PY[0]])} to {pct_text(lifted.prob_profit_pct[PY[0]])} under the current simulator settings.")
-        st.markdown(f"<div class='note'><b>What is solid here:</b> each tenth of a point of gross margin is worth about RMB {revp[0] / 1000:,.1f} mn a year at {PY[0]} revenue. "
-                    f"<b>What is not:</b> the size of the gain an analytics programme can deliver at Pagoda. That needs a published benchmark or a store pilot, and belongs in the report as a range.</div>", unsafe_allow_html=True)
+        st.markdown("<div class='note'><b>What is solid here:</b> what a point of margin is worth. <b>What is not:</b> the gain an analytics programme can deliver at Pagoda. "
+                    "Public data cannot show that; the pilot measures it.</div>", unsafe_allow_html=True)
 
 # ----------------------------------------------------------------------------- data and method
 with tab_data:
@@ -475,7 +511,7 @@ with tab_data:
         st.dataframe(inv, width="stretch", hide_index=True, height=460)
     st.subheader("Assumption register")
     reg = pd.read_csv(DATA / "assumption_register.csv").fillna("")
-    st.caption("Every assumption the analysis depends on. Sourced: transcribed from a document. Derived: calculated from sourced values. Judgement: the author's choice. Placeholder: not an estimate. "
+    st.caption("Every assumption the analysis depends on. Sourced: transcribed from a document. Derived: calculated from sourced values. Judgement: the author's choice. "
                + ", ".join(f"{k}: {v}" for k, v in reg.basis.value_counts().items()) + ".")
     st.dataframe(reg, width="stretch", hide_index=True, height=420)
     st.subheader("Company facts and where each one comes from")
@@ -489,7 +525,7 @@ with tab_data:
 - **Company data is second-hand**, from four broker reports whose firms all have ties to Pagoda. Check it against Pagoda's annual reports before citing.
 - **Stores are one pool.** City tier and store format are not modelled.
 - **The Seven-Star alliance is not modelled.** It was 14% of first-half 2026 revenue at a lower margin.
-- **The business-case tab uses placeholder costs.**""")
+- **The pilot cost is an estimate.** Salary lines come from small-sample benchmarks; the other lines are team assumptions (see the assumption register).""")
     with c2:
         st.subheader("Responsible use")
         st.markdown("""
@@ -504,4 +540,7 @@ with tab_data:
 - Liu, Guangyi, and Xiaoying Peng. 2026. *百果园集团 (2411.HK): 水果连锁龙头，扬帆再次起航*. China Galaxy Securities, April 10, 2026.
 - Wong, Joseph. 2023. *Shenzhen Pagoda (2411 HK): Sowing the Franchiser's Seed*. CMB International Global Markets, March 3, 2023.
 - Xu, Zhuonan, Jierui Wang, and Yi Ding. 2026. *Pagoda Industrial (Group): Main Business Recovering in 1H26; Cooperation under Seven-Star Convention Alliance Advancing*. China International Capital Corporation, September 7, 2026.
+- Pagoda (Shenzhen Pagoda Industrial (Group) Corporation Limited). 2026b. *Interim Report 2026*. Hong Kong Exchanges and Clearing, September 25, 2026. (Total store count and first-half profit of RMB 33.6 mn, as cited in the team report.)
+- Levels.fyi. 2026. Salary data for software engineers, data scientists and solution architects in Shenzhen and data analysts in China. Accessed October 12, 2026.
+- Payscale. 2025. Salary data for software developers in Shenzhen and data analysts in China. Accessed October 12, 2026.
 """)
