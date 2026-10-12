@@ -14,10 +14,12 @@ MSBA capstone, analytics workbook and proof of concept. Subject: Pagoda (百果�
 |---|---|
 | `pagoda_capstone_analytics.ipynb` | The analysis, end to end: data understanding, preparation and validation, exploratory analysis, forecast backtest, Monte Carlo turnaround simulator, value figures. Saved with outputs, so it can be read without running. |
 | `app.py`, `analytics.py` | The proof of concept as an interactive Streamlit app. `analytics.py` is the calculation engine; `app.py` is the interface. |
-| `pagoda_facts.csv` | Company figures with a source and page for each value. |
-| `analyst_plan.csv` | The analyst forecast used to calibrate the model. |
-| `analyst_forecasts.csv` | Past analyst forecasts, used to size the uncertainty. |
-| `assumption_register.csv` | Every assumption with its basis and source. |
+| `data/pagoda_facts.csv` | Company figures with a source and page for each value. |
+| `data/analyst_plan.csv` | The analyst forecast used to calibrate the model. |
+| `data/analyst_forecasts.csv` | Past analyst forecasts, used to size the uncertainty. |
+| `data/assumption_register.csv` | Every assumption with its basis and source. |
+| `figures/` | The six charts produced by the notebook. |
+| `requirements.txt` | Python packages for the app and notebook. |
 
 ## Running the notebook
 
